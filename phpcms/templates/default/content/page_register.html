@@ -1,0 +1,222 @@
+<?php
+define('db_server', 'yours');
+define('db_user', 'yours');
+define('db_password', 'yours');
+$con=mysql_connect(db_server,db_user,db_password) or die('connect fail!');
+mysql_select_db('yours');
+$data=mysql_query("SELECT * FROM aab_member WHERE username='$_username'",$con);
+$row=mysql_fetch_array($data);
+$chinesenamess=$row['chinesename'];
+$englishnamess=$row['englishname'];
+$genderss=$row['gender'];
+$nationalityss=$row['nationality'];
+$birthplacess=$row['birthplace'];
+$originplacess=$row['originplace'];
+$birthdayss=$row['birthday'];
+$graduatedatess=$row['graduatedate'];
+$godatess=$row['godate'];
+$returndatess=$row['returndate'];
+$educationss=$row['education'];
+$majorss=$row['major'];
+$teless=$row['tele'];
+$qqss=$row['qq'];
+$emailss=$row['emails'];
+$linkedinss=$row['linkedin'];
+$wechatss=$row['wechat'];
+$facebookss=$row['facebook'];
+$addressss=$row['address'];
+$workplacess=$row['workplace'];
+$hobbyss=$row['hobby'];
+$willingss=$row['willing'];
+
+
+  if (isset($_POST['submit'])) {
+        $chinesename=$_POST['chinesename'];
+        $englishname=$_POST['englishname'];
+        $gender=$_POST['gender'];
+        $nationality=$_POST['nationality'];
+        $birthplace=$_POST['birthplace'];
+        $originplace=$_POST['originplace'];
+        $birthday=$_POST['birthday'];
+        $graduatedate=$_POST['graduatedate'];
+        $godate=$_POST['godate'];
+        $returndate=$_POST['returndate'];
+        $education=$_POST['education'];
+        $major=$_POST['major'];
+        $tele=$_POST['tele'];
+        $qq=$_POST['qq'];
+        $emails=$_POST['emails'];
+        $linkedin=$_POST['linkedin'];
+        $wechat=$_POST['wechat'];
+        $facebook=$_POST['facebook'];
+        $address=$_POST['address'];
+        $workplace=$_POST['workplace'];
+        $hobby=$_POST['hobby'];
+        $willing=$_POST['willing'];
+
+        $query="UPDATE aab_member SET chinesename='$chinesename',englishname='$englishname',gender='$gender',nationality='$nationality',birthplace='$birthplace',originplace='$originplace',birthday='$birthday',graduatedate='$graduatedate',godate='$godate',returndate='$returndate',education='$education',major='$major',tele='$tele',qq='$qq',emails='$emails',
+          linkedin='$linkedin',wechat='$wechat',facebook='$facebook',address='$address',workplace='$workplace',hobby='$hobby',willing='$willing' WHERE username='$_username'";
+        $result=mysql_query($query) or die("insert fail!");
+        echo "<script>alert('提交修改成功！Submit and save succeed!');</script>";
+  }
+
+?>
+<!DOCTYPE html>
+<html>
+<head> 
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+  <title>荷比卢校友会个人信息登记</title> 
+  <style>
+      *{
+      	margin: 0;
+      	padding: 0;
+      }
+      .searchwrap {
+        display: none;
+      }
+      #container{ 
+          width: 750px;
+          margin:0 auto;   
+      }
+      .p1{
+      	  float: left;
+      	  margin: 70px 0 0 20px;
+          font-size: 25px;
+          font-family: 楷体;
+          font-weight: bolder;
+      }
+      table{ 
+      	margin:0 0 30px 10px;
+      	border:1px solid #000;
+      }
+      table tr td{ 
+      	font-weight: bolder;
+        text-align: center;  
+      	border:1px solid #000;         	
+      }
+      .first{ 
+        width: 130px;
+      }
+      input{
+      	border: 0;
+        width: 240px;
+        height: 32px;
+        font-size: 20px;
+        text-align: left;     
+        text-indent: 1em;
+      }
+
+      .address,.workplace,.hobby{ 
+        border: 0;
+        width: 615px;
+        height: 32px;
+        font-size: 20px;
+        text-align: center;
+      }
+      .willing{ 
+      	border: 0;
+        width: 615px;
+        height: 145px;
+        font-size: 20px;
+        text-align: center;        
+      }
+  </style> 
+</head> 
+<body>
+  {template "content","header"}
+  {if !$_username}
+  <div style="margin-top:50px;width:50%;margin-left:auto;margin-right:auto;text-align:center;font-size:18px;min-height:360px;">
+        你需要登录才能填写个人信息!-You need to login to submit your personal information!
+    </div>
+  {/if}
+  {if $_userid}
+    <div id="container">
+    	<p class="p1">荷比卢校友会个人信息登记 Alumni information form</p>
+      <br>
+      <form action="<?php $_SERVER["PHP_SELF"] ?>" method="post">
+        <table cellspacing="0px">
+          	<tr>
+          		<td class="first">中文姓名Chinese Name：</td>
+          		<td ><input type="text" name="chinesename" value="<?php echo $chinesenamess ?>"></td>
+          		<td class="first">英文姓名English Name：</td>
+          		<td><input type="text" name="englishname" value="<?php echo $englishnamess ?>"></td>
+          	</tr>
+          	<tr>
+          		<td>性别Gender：</td>
+          		<td><input type="text" name="gender" value="<?php echo $genderss ?>"></td>
+          		<td>国籍Nationality：</td>
+          		<td><input type="text" name="nationality" value="<?php echo $nationalityss ?>"></td>
+          	</tr>
+          	<tr>
+          		<td>出生地Birthplace：</td>
+          		<td><input type="text" name="birthplace" value="<?php echo $birthplacess ?>"></td>
+          		<td>籍贯Originplace：</td>
+          		<td><input type="text" name="originplace" value="<?php echo $originplacess ?>"></td>
+          	</tr>
+          	<tr>
+          		<td>出生日期Birthday：</td>
+          		<td><input type="text" name="birthday" value="<?php echo $birthdayss ?>"></td>
+          		<td>毕业日期Graduatedate：</td>
+          		<td><input type="text" name="graduatedate" value="<?php echo $graduatedatess ?>"></td>
+          	</tr>
+          	<tr>
+          		<td>出国时间：</td>
+          		<td><input type="text" name="godate" value="<?php echo $godatess ?>"></td>
+          		<td>何时回国：</td>
+          		<td><input type="text" name="returndate" value="<?php echo $returndatess ?>"></td>
+          	</tr>
+          	<tr>
+          		<td>学历Educational background：</td>
+          		<td><input type="text" name="education" value="<?php echo $educationss ?>"></td>
+          		<td>专业Major：</td>
+          		<td><input type="text" name="major" value="<?php echo $majorss ?>"></td>
+          	</tr>
+          	<tr>
+          		<td>电话Tele：</td>
+          		<td><input type="text" name="tele" value="<?php echo $teless ?>"></td>
+          		<td>QQ：</td>
+          		<td><input type="text" name="qq" value="<?php echo $qqss ?>"></td>
+          	</tr>
+          	<tr>
+          		<td>E-mail：</td>
+          		<td><input type="text" name="emails" value="<?php echo $emailss ?>"></td>
+          		<td>Linkedin：</td>
+          		<td><input type="text" name="linkedin" value="<?php echo $linkedinss ?>"></td>
+          	</tr>
+          	<tr>
+          		<td>微信Wechat：</td>
+          		<td><input type="text" name="wechat" value="<?php echo $wechatss ?>"></td>
+          		<td>facebook：</td>
+          		<td><input type="text" name="facebook" value="<?php echo $facebookss ?>"></td>
+          	</tr>
+          	<tr>
+          		<td>现居住地址Address：</td>
+          		<td colspan="3"><input class="address" type="text" name="address" value="<?php echo $addressss ?>"></td>
+          	</tr>
+          	<tr>
+          		<td>现工作单位Workplace：</td>
+          		<td colspan="3"><input class="workplace" type="text" name="workplace" value="<?php echo $workplacess ?>"></td>
+          	</tr>
+          	<tr>
+          		<td>兴趣爱好Hobby：</td>
+          		<td colspan="3"><input class="hobby" type="text" name="hobby" value="<?php echo $hobbyss ?>"></td>
+          	</tr>
+          		
+          	<tr>
+          		<td>是否愿意与其他校友分享此页信息（填“Y”或者“N”）Willing to share,"Y" or "N"?</td>
+          		<td colspan="3"><input class="willing" type="text" name="willing" value="<?php echo $willingss ?>"></td>
+          	</tr>
+            <tr>
+              <td><input type="submit" name="submit"  value="Submit提交" /></td>
+              
+            </tr>
+                
+             
+          
+        </table>
+        </form>
+    </div>
+    {/if}
+{template "content","footer"}
+</body>
+</html>

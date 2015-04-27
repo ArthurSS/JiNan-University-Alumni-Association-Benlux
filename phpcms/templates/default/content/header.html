@@ -1,0 +1,171 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="shortcut icon" href="{IMG_PATH}icon.gif" >
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=7" />
+    <title>暨南大学荷比卢校友会 Jinan University Alumni Association Benelux</title>
+    <meta name="keywords" content="暨南大学校友会 荷比卢">
+    <meta name="description" content="暨南大学荷比卢校友会 Jinan University Alumni Association Benelux">
+    <link rel="stylesheet" type="text/css" href="{CSS_PATH}bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="{CSS_PATH}bootstrap-theme.min.css">
+    <link rel="stylesheet" type="text/css" href="{CSS_PATH}arthurss.css" />
+    <script type="text/javascript" src="{JS_PATH}jquery.min.js"></script>
+    <script type="text/javascript" src="{JS_PATH}jquery.sgallery.js"></script>
+    <script type="text/javascript" src="{JS_PATH}search_common.js"></script>
+    <style type="text/css">
+    .language {
+        width: 100px;
+        height: 20px;
+        position: absolute;
+        right: 39px;
+        top:0px;
+    }
+    .language span {
+        cursor: pointer;
+    }
+    </style>
+</head>
+<body>
+
+    <!-- 
+<div class="body-top">
+    <div class="content">
+    {pc:content  action="position" posid="9" order="id" num="10" cache="3600"}
+    		<div id="announ">
+                 <ul>
+                 {loop $data $k $v}
+                      <li><a href="{$v[url]}">{$v[title]}</a></li>
+                      {/loop}
+                 </ul>
+            </div>
+     {/pc}
+	 {php echo runhook('glogal_header')}
+<script type="text/javascript">
+$(function(){
+	startmarquee('announ',22,1,500,3000);
+})
+</script>
+            <div class="login lh24 blue"><a href="{APP_PATH}index.php?m=content&c=rss&siteid={get_siteid()}" class="rss ib">rss</a><span class="rt"><script type="text/javascript">document.write('<iframe src="{APP_PATH}index.php?m=member&c=index&a=mini&forward='+encodeURIComponent(location.href)+'&siteid={get_siteid()}" allowTransparency="true"  width="500" height="24" frameborder="0" scrolling="no"></iframe>')</script></span></div>
+    </div>
+</div>
+-->
+
+
+<div class="bodywrap">
+    <div class="header">
+        <div class="header-first-row">
+            <div class="logowrap">
+                <a href="{siteurl($siteid)}/"><img src="{IMG_PATH}/logo.png" /></a>
+            </div>
+        
+            <div class="search-login-wrap">
+                <div class="language">
+                    <span class="english" onclick="englishs()"> English </span> |
+                    <span class="chinese" onclick="chineses()"> 中文</span>
+                </div>
+
+            <div class="loginwrap">
+                <div class="login lh24 blue">
+                    <span class="rt">
+                        <script type="text/javascript">document.write('<iframe src="{APP_PATH}index.php?m=member&c=index&a=mini&forward='+encodeURIComponent(location.href)+'&siteid={get_siteid()}" allowTransparency="true"  width="500" height="24" frameborder="0" scrolling="no"></iframe>')
+                        </script>
+                    </span>
+
+                </div>
+
+            </div>
+
+            <div class="searchwrap">
+            <!--去掉搜索上方的导航
+                <div class="tab" id="search">
+                 {php $j=0}
+                 {php $search_model = getcache('search_model_'.$siteid, 'search');}
+                 {loop $search_model $k=>$v}
+                 {php $j++;}
+                 <a href="javascript:;" onclick="setmodel({$v['typeid']}, $(this));" style="outline:medium none;" hidefocus="true" {if $j==1 && $typeid=$v['typeid']} class="on" {/if}>{$v['name']}</a>{if $j != count($search_model)}<span> | </span>{/if}
+                 {/loop}
+                 {php unset($j);}
+             </div>
+              -->
+               
+
+             <!--<div class="bd"> -->
+                <form action="{APP_PATH}index.php" method="get" target="_blank" class="navbar-form navbar-left" role="search">
+                    <div class="form-group">
+                    <input type="hidden" name="m" value="search"/>
+                    <input type="hidden" name="c" value="index"/>
+                    <input type="hidden" name="a" value="init"/>
+                    <input type="hidden" name="typeid" value="{$typeid}" id="typeid"/>
+                    <input type="hidden" name="siteid" value="{$siteid}" id="siteid"/>
+                    <input type="text" class="form-control" placeholder="Search" name="q" id="q"
+                     style="width:180px"/>
+                    <input type="submit" value="搜 索" class="btn btn-default"/>
+                    </div>
+                </form>
+            <!--</div> -->
+        </div>
+    </div>
+    <!-- search-login-wrap end!-->
+</div>
+<!-- header-first-row end! -->
+
+<!--去掉banner
+<div class="banner"><script language="javascript" src="{APP_PATH}index.php?m=poster&c=index&a=show_poster&id=1"></script>
+</div>
+-->
+       
+<div class="header-second-row">
+    <div class="topnavwrap">
+       {pc:content action="category" catid="0" num="25" siteid="$siteid" order="listorder ASC"}
+       <ul class="navigation">
+         <a href="{siteurl($siteid)}"><li class="chineses">首页</li><li class="englishs">Index</li></a>
+         {loop $data $r}
+         <a href="{$r[url]}"><li><span class="chineses">{$r[catname]}</span><span class="englishs">{$r[catdir]}</span></li></a>
+         {/loop}
+     </ul>
+     {/pc}
+     {php echo runhook('glogal_menu')}
+    </div>
+</div>
+<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingTwo" style="background-color:#222222">
+      <h4 class="panel-title">
+        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+          <span id="menu">菜单 <img src="{IMG_PATH}menu.png"></span>
+        </a>
+      </h4>
+    </div>
+    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+      <div class="panel-body">
+        {pc:content action="category" catid="0" num="25" siteid="$siteid" order="listorder ASC"}
+       <ul class="navigation">
+         <a href="{siteurl($siteid)}"><li>首页</li></a>
+        {loop $data $r}
+         <a href="{$r[url]}" id="{$r[catid]}"><li class="categories"><span>{$r[catname]}</span></li></a>
+        {/loop}
+     </ul>
+     {/pc}
+      </div>
+    </div>
+  </div>
+</div>
+<!-- header-second-row end! -->
+
+<!-- 去掉面包导航
+{if $top_parentid}
+<div class="subnav">
+  {pc:content action="category" catid="$top_parentid" num="15" siteid="$siteid" order="listorder ASC"}
+  {loop $data $r}
+  <a href="{$r[url]}">{$r[catname]}</a><span> | </span>
+  {/loop}
+  {/pc}
+  <a href="{APP_PATH}index.php?m=video&c=index&a=album">视频专辑</a> <span> | </span>
+  {if $modelid}<a href="{APP_PATH}index.php?m=content&c=search&catid={$catid}">搜索</a>{/if}
+</div>
+{/if}
+-->
+</div>
+<!-- header end!!!!!!!!!!!!!!!!!!!!!-->

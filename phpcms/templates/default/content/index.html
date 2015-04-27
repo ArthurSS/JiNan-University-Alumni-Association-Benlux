@@ -1,0 +1,275 @@
+{template "content","header"}
+<!--main-->
+<div class="main">
+    <div class="main-first-row">
+        <div class="slidewrap">
+            <div class="slide">
+                <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                    <!-- Indicators -->
+                    <ol class="carousel-indicators">
+                        <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                        <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                        <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                    </ol>
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner" id="slidewrap">
+                        <div class="item active">
+                            <img src="{IMG_PATH}slide3.jpg" alt="..." width="100%" id="slideimage"/>
+                            <div class="carousel-caption" style="">
+
+                            </div>
+                        </div>
+                        <div class="item">
+                            <img src="{IMG_PATH}slide1.jpg" alt="..." width="100%" id="slideimage"/>
+                            <div class="carousel-caption" style="">
+
+                            </div>
+                        </div>
+                        <div class="item">
+                            <img src="{IMG_PATH}slide2.jpg" alt="..." width="100%" id="slideimage"/>
+                            <div class="carousel-caption" style="">
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Controls -->
+                    <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+                        <span>  </span>
+                    </a>
+                    <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+                        <span>  </span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--main-first-row end!!!!!!!!!!!!!!!!-->
+    
+    <div class="main-second-row">
+    <div class="leftcolwrap">
+    <!--<div class="firstcolumn">
+           <div class="content">
+            //首页头条推荐
+            {pc:content  action="position" posid="2" order="listorder DESC" num="4"}
+            {loop $data $r}
+            <h4 class="blue"><a href="{$r[url]}" title="{$r[title]}">{str_cut($r[title],36,'')}</a></h4>
+            <p>{if $n==1}<img src="{thumb($r[thumb],90,60)}" width="90" height="60"/>{/if}{str_cut($r[description],112)}</p>
+            {/loop}  
+            {/pc}   
+        </div>
+    </div>
+-->
+
+
+            <!--
+-->
+
+<!--
+<div class="box">
+  <h5>图片新闻</h5>
+  //首页图片推荐 
+  {pc:content  action="position" posid="12" thumb="1" order="listorder DESC" num="10"}
+  <ul class="content news-photo picbig">
+   {loop $data $r}
+   <li>
+    <div class="img-wrap">
+        <a href="{$r[url]}" title="{$r[title]}"><img src="{thumb($r[thumb],110,0)}" title="{$r[title]}"/></a>
+    </div>
+    <a href="{$r[url]}" title="{$r[title]}">{str_cut($r[title],20)}</a>
+</li>
+{/loop}
+</ul>
+{/pc}
+</div>
+-->
+<!-- 每个栏目成一块，每两块换行 -->
+{loop subcat(0,0,0,$siteid) $r}
+{php $num++}
+{if $num <=4 and $num!=1} <!--$num!=1代表关于我们不出现在首页上 -->
+<div class="firstcolumn" {if $num%2!=0}style=" margin-right:10px"{/if}>
+    <div class="columntoptitle">
+        <span class="columntitle" name="chineses">{$r[catname]}</span>
+        <span class="columntitle" name="englishs">{$r[catdir]}</span>
+        <a href="{$r[url]}" class="more" name="chineses">更多>></a>
+         <a href="{$r[url]}" class="more" name="englishs">More>></a>
+    </div>
+  <hr />
+   {pc:content  action="lists" catid="$r[catid]" order="updatetime DESC" thumb="1" num="1" return="info"}
+   {loop $info $v}
+
+   <div class="columnthumb"><img src="{thumb($v[thumb],190,0)}" width="190"/></div>
+   <p class="firsttitle">
+        <a href="{$v['url']}" target="_blank" title="{$v['title']}">
+
+        <span class="chineses">{str_cut($v['title'],78)}</span>
+        <span class="englishs">{str_cut($v['keywords'],78)}</span> 
+        
+        </a>
+<!--{str_cut($v['description'],100)} 去掉描述语-->
+ </p>
+ {/loop}
+
+ {/pc}   
+
+ {php $nth=0}
+ 
+ {pc:content action="lists" catid="$r[catid]" num="4" order="id DESC" return="info"}
+ <ul class="commontitle">
+    {loop $info $v}
+    {php $nth++}
+    {if $nth!=1}
+    <li>
+        <a href="{$v['url']}" target="_blank" title="{$v['title']}"{title_style($v[style])}>
+            <!--<span class="commontitletime">> [<?php //echo date("m-d",$v['inputtime']);?>] </span>-->
+            <span class="commontitletime"> > </span>
+             <span class="chineses">{str_cut($v['title'],78)}</span>
+        <span class="englishs">{str_cut($v['keywords'],78)}</span> 
+        </a>
+    </li>
+    {/if}
+    {/loop}
+</ul>
+{/pc}
+
+</div>
+{/if}
+{/loop}
+</div>
+<!-- leftcolwrap end!!!!!!!!!!!!!!!!!!!!!!!-->
+
+
+<div class="rightcolwrap" style="padding-top:40px;">
+
+        <div class="slide">
+          <div class="columntoptitle"><span class="columntitle" name="chineses">新闻速递</span>
+                                      <span class="columntitle" name="englishs">Slide News</span></div>
+          <hr />
+                <div id="carousel-example-generics" class="carousel slide" data-ride="carousel">
+                    <!-- Indicators -->
+                    
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner" id="slidewrap">
+
+                        <div class="item active">
+                          <a href="http://www.jnuren.com/jnuaab/index.php?m=content&c=index&a=show&catid=19&id=17">
+
+                            <img src="http://www.jnuren.com/jnuaab/uploadfile/1234.jpg" alt="..." width="100%" id="slideimage"/>
+                            <div class="carousel-caption" style="">
+我校敦聘荷兰著名语音学家David Joseph Maria Weenink为客座教授
+                            </div></a>
+                        </div>
+                        <div class="item">
+                          <a href="http://www.jnuren.com/jnuaab/index.php?m=content&c=index&a=show&catid=23&id=20">
+
+                            <img src="http://news.jnu.edu.cn/UploadFiles/jnyw/2013/12/201312111156250788.JPG" alt="..." width="100%" id="slideimage"/>
+                            <div class="carousel-caption" style="">
+胡军校长访问欧洲三国, 拓展与世界名校的交流合作
+                            </div></a>
+                        </div>
+                        <div class="item">
+                         <a href="http://www.jnuren.com/jnuaab/index.php?m=content&c=index&a=show&catid=23&id=18">
+
+                            <img src="http://portal.jnu.edu.cn/publish/uploadFile/1000071/eWebEditor/20120530053001308.JPG" alt="..." width="100%" id="slideimage"/>
+                            <div class="carousel-caption" style="">
+我院与荷兰王国马斯特里赫特大学法学院合作备忘录签署仪
+                            </div></a>
+                        </div>
+                    </div>
+                    <!-- Controls -->
+                    <a class="left carousel-control" href="#carousel-example-generics" data-slide="prev">
+                        <span>  </span>
+                    </a>
+                    <a class="right carousel-control" href="#carousel-example-generics" data-slide="next">
+                        <span>  </span>
+                    </a>
+                </div>
+            </div>
+  </div>
+<!--rightcolwrap end!!! -->
+
+
+</div>
+<!-- main-second-row end -->
+<div class="main-third-row">
+    <span class="linktitle"><span class="chineses">友情链接</span><span class="englishs">Friendly links</span></span>
+    <hr />
+    <div class="linkwrap">
+        <div class="row">
+            <div class="col-xs-5 col-md-2">
+                <a href="http://www.jnu.edu.cn/jnu2014/" class="thumbnail" target="_blank">
+                    <img src="{IMG_PATH}links/library.png" alt="暨南大学官网">
+                </a>
+                <span class="chineses">暨南大学官网</span><span class="englishs">Jinan University</span>
+                
+            </div>
+            <div class="col-xs-5 col-md-2">
+                <a href="http://news.jnu.edu.cn/Index.html" class="thumbnail" target="_blank">
+                    <img src="{IMG_PATH}links/news.png" alt="暨南大学新闻网">
+                </a>
+                <span class="chineses">暨南大学新闻网</span><span class="englishs">Jinan University News</span>
+                
+            </div>
+
+            <div class="col-xs-5 col-md-2">
+                <a href="http://www.jnmba.com/" class="thumbnail" target="_blank">
+                    <img src="{IMG_PATH}links/mba.jpg" alt="暨南大学管理学院MBA">
+                </a>
+                <span class="chineses">暨南大学管理学院MBA</span><span class="englishs">Jinan MBA</span>
+                
+            </div>
+
+            <div class="col-xs-5 col-md-2">
+                <a href="http://south.jnu.edu.cn/" class="thumbnail" target="_blank">
+                    <img src="{IMG_PATH}links/newSchool.png" alt="暨南大学新校区">
+                </a>
+                <span class="chineses">暨南大学新校区</span><span class="englishs">Jinan University New Campus </span>
+                
+            </div>
+
+            <div class="col-xs-5 col-md-2">
+                <a href="http://portal.jnu.edu.cn/portal/group/hqhr" class="thumbnail" target="_blank">
+                    <img src="{IMG_PATH}links/huaqiao.png" alt="暨南大学华人华侨研究所">
+                </a>
+                
+                <span class="chineses">暨南大学华人华侨研究所</span>
+                <span class="englishs">Jinan University Institute of Overseas Chinese </span>
+            </div>
+
+        </div>
+    </div>
+    <div class="firstlink"></div>
+    <div class="secondlink"></div>
+    <div class="thirdlink"></div>
+    <div class="forthlink"></div>
+</div>
+
+
+</div>
+
+<!-- main end!!!!!!!!!!!!!!!!!!!!!!!-->
+<style type="text/css">
+#FocusPic {
+  margin-top: 42px;
+  width: 300px;
+  min-height: 310px;
+  height: auto;
+  position: absolute;
+}
+#FocusPic a img {
+  width: 260px;
+  display: block;
+  position: absolute;
+}
+</style>
+
+<script type="text/javascript"> 
+
+
+
+/*$(function(){
+	new slide("#main-slide","cur",310,260,1);//焦点图
+	new SwapTab(".SwapTab","span",".tab-content","ul","fb");//排行TAB
+})*/
+</script>
+
+{template "content","footer"}

@@ -1,0 +1,38 @@
+<div class="footer">
+	<!--
+<p class="info">
+{pc:content action="category" catid="1" num="15" siteid="$siteid" order="listorder ASC"}
+{loop $data $r}
+<a href="{$r[url]}" target="_blank">{$r[catname]}</a> |  
+{/loop}
+{/pc}
+<a href="{APP_PATH}index.php?m=link" target="_blank">友情链接</a>
+<br />
+Powered by <strong><a href="http://www.phpcms.cn" target="_blank">PHPCMS</a></strong> <em>{get_pc_version(1)}</em> &copy; 2011 <img src="{IMG_PATH}copyright.gif"/>{tjcode()}{php echo runhook('glogal_footer')}
+</p>
+
+-->
+<div class="footer-first-row">
+	<p>Copyright © 2014 <a href="#" color="">Jinan University Alunmi Association Benelux</a> All Right Reserved</p>
+	<p><a href="#">暨南大学荷比卢校友会</a>版权所有 粤ICP备12087612号</p>
+	<p>Powered By <a href="http://www.jnuren.com" target="_blank" style="color:#fff">www.jnuren.com</a> @王耀 arthurss@jnuren.com</p>
+</div>
+<!--<div class="footer-second-row"></div>如果需要去掉注释 -->
+
+</div><!-- footer end! -->
+</div><!-- bodywrap end!!!!!!!!!!-->
+<script type="text/javascript">
+$(function(){
+	$(".picbig").each(function(i){
+		var cur = $(this).find('.img-wrap').eq(0);
+		var w = cur.width();
+		var h = cur.height();
+		$(this).find('.img-wrap img').LoadImage(true, w, h,'{IMG_PATH}msg_img/loading.gif');
+	});
+})
+</script>
+<script src="{JS_PATH}jquery.js"></script>
+<script src="{JS_PATH}bootstrap.min.js"></script>
+<script src="{JS_PATH}arthurss.js"></script>
+</body>
+</html>

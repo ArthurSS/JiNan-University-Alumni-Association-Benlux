@@ -1,0 +1,185 @@
+{template "content","header"}
+<!--main-->
+<div class="main">
+    <div class="main-first-row">
+        <div class="slidewrap">
+            <div class="slide">
+                <img src="{IMG_PATH}sights.png"> 
+            </div>
+        </div>
+    </div>
+    <!--main-first-row end!!!!!!!!!!!!!!!!-->
+
+
+
+
+    <div class="leftmain">
+        <ul class="leftnav" id="leftnav">
+            {loop subcat($catid) $v}
+            {php if($v['type']!=0) continue;}
+            <li class="{$v[url]}" onclick="hideandshow(this.className)" name="chineses">♦ {$v[catname]}</li>
+            <li class="{$v[url]}" onclick="hideandshow(this.className)" name="englishs">♦ {$v[catdir]}</li>
+            {/loop}
+        </ul>
+    </div>
+<!--
+	<div class="col-left channel-hot">
+    	<div class="news-hot">
+        <div class="icon"></div>
+        	<div class="content">
+        	{pc:content  action="position" posid="10" catid="$catid" thumb="1" order="listorder DESC" num="2"}
+				{loop $data $v}
+				  <h4 class="blue"><a href="{$v[url]}" target="_blank"{title_style($v[style])}>{$v[title]}</a></h4>
+                <p><img src="{thumb($v[thumb],90,60)}" width="90" height="60" />{str_cut(strip_tags($v[description]), 150)}</p>
+                <div class="bk20 hr"><hr /></div>
+				{/loop}
+			{/pc}
+			{pc:content  action="lists" catid="$catid" order="id DESC" num="3"}
+                <ul class="list">
+                {loop $data $k $v}
+                	<li>·<a href="{$v[url]}" title="{$v[title]}" target="_blank"{title_style($v[style])}>{str_cut($v[title], 60)}</a></li>
+                {/loop}
+                </ul>
+             {/pc}
+            </div>
+        </div>
+    </div>
+    去掉置顶的热点新闻 --> 
+    <!--
+    <div class="col-auto channel-slide">
+    {pc:content  action="lists" catid="$catid" order="listorder ASC" thumb="1" num="5"}
+  		<ul class="thumb">
+  		{loop $data $k $v}
+        	<li {if $n==1}class="on" style="margin:0"{/if}><a href="{$v[url]}"><img src="{thumb($v[thumb], 82, 50)}"  alt="{$v[title]}" width="82" height="50" /><div class="icon"></div></a></li>
+        {/loop}
+        </ul>
+        <div class="col-auto">
+            <ul class="photo">
+            {loop $data $k $v}
+                <li><a href="{$v[url]}" title="{$v[title]}"><img src="{thumb($v[thumb], 398, 234)}" width="398" height="234" alt="{$v[title]}" /></a></li>
+            {/loop}
+            </ul>
+            <div class="title">
+            {loop $data $k $v}
+              <p  {if $n==1}style="display:block"{/if}><strong><a href="{$v[url]}" title="{$v[title]}" class="blue"{title_style($v[style])}>{str_cut($v[title], 36)}</a></strong><br />{str_cut(strip_tags($v[description]), 62)}</p>
+            {/loop}
+          </div>
+        </div>
+         {/pc}
+    </div>
+    去掉幻灯片-->
+
+    <!--下面这部分代码是广告代码，可通过删除注释的方法显示出来-->
+ <!-- 
+    <div class="ads">
+    	<div class="col-left"><script language="javascript" src="{APP_PATH}caches/poster_js/4.js"></script></div>
+        <div class="col-auto">
+        	<div class="left">推广链接</div>
+            <div class="right">这里放广告</div>
+        </div>
+  </div>
+-->
+{pc:content action="category" catid="0" num="6" siteid="$siteid" order="listorder ASC"}
+<div class="rightmain">
+
+{loop $date $r}
+<div class="youknow!"><span>{$r[catname]}</span></div>
+
+{/loop}
+{/pc}
+
+	{php $j=1;}
+	{loop subcat($catid) $vv}
+	{php if($vv['type']!=0) continue;}
+            <!-- 隐藏掉title 
+            <div class="columntoptitle">
+        <span class="columntitle">{$v[catname]}</span>
+        <a href="{$v[url]}" class="more">更多>></a>
+            </div>
+        -->
+        {pc:content action="lists" catid="$vv[catid]" thumb="1" num="10" order="id DESC"}
+        {loop $data $v}
+        <div class="{$vv[url]}" name="forjs" id="piece">             	
+
+         <div class="columnthumb">
+            <a href="{$v[url]}" target="_blank">
+                <img src="{thumb($v[thumb],190,0)}"/>
+            </a>
+        </div>
+
+        <a href="{$v[url]}" target="_blank" title="{$v[title]}">
+            
+            <span class="chineses">{str_cut($v[title], 80)}</span>
+            <span class="englishs">{str_cut($v[keywords], 80)}</span>  
+            
+        </a>
+        <p class="description">
+            {str_cut($v[description],300,'..')}...
+        </p>
+        </div>
+        {/loop}     
+        {/pc}
+
+        {$j++}
+        {/loop}
+</div>
+    <!-- rightmain end!  -->
+<!--
+    <div class="col-auto">
+        <div class="box">
+            <h5 class="title-2">频道总排行</h5>
+            <ul class="content digg">
+            {pc:content action="hits" catid="$catid" num="10" order="views DESC" cache="3600"}
+				{loop $data $v}
+					<li><a href="{$v[url]}" target="_blank"{title_style($v[style])}>{$v[title]}</a></li>
+				{/loop}
+			{/pc}
+            </ul>
+        </div>
+        <div class="bk10"></div>
+        <div class="box">
+            <h5 class="title-2">频道本月排行</h5>
+            <ul class="content rank">
+            {pc:content action="hits" catid="$catid" num="8" order="monthviews DESC" cache="3600"}
+				{loop $data $v}
+				<li><span>{number_format($v[monthviews])}</span><a href="{$v[url]}"{title_style($v[style])} class="title" title="{$v[title]}">{str_cut($v[title],56,'...')}</a></li>
+				{/loop}
+			{/pc}
+            </ul>
+        </div>
+    </div>
+    去掉频道排行和阅读排行-->
+
+</div>
+<!-- main end! -->
+<script type="text/javascript">
+function ChannelSlide(Name,Class){
+	$(Name+' ul.photo li').sGallery({
+		titleObj:Name+' div.title p',
+		thumbObj:Name+' .thumb li',
+		thumbNowClass:Class
+	});
+}
+new ChannelSlide(".channel-slide","on",311,260);
+
+function hideandshow(whichurl) {
+    var leftnav=document.getElementById("leftnav");
+    var lists=leftnav.getElementsByTagName("li");
+    for (i=0;i<lists.length;i++) {
+        if (lists[i].className!=whichurl) {
+            lists[i].id="commenlist";
+        } else {
+            lists[i].id="activelist";
+        }
+    }
+    var divs=document.getElementsByClassName("rightmain")[0].getElementsByTagName("div");
+    for (i=0;i<divs.length;i++) {
+        if (divs[i].className!=whichurl && divs[i].parentNode.className=="rightmain") {
+            divs[i].style.display="none";
+        } else {
+            divs[i].style.display="block";
+        }
+    }
+}
+</script>
+{template "content","footer"}

@@ -1,0 +1,31 @@
+<style type="text/css">
+a {
+	font-family: "微软雅黑",Arial;
+	text-decoration: none;
+	color:#666;
+}
+a:hover {
+	text-decoration: none;
+}
+* {
+	font-size:14px;
+	font-family: Arial;
+}
+</style>
+<body style="background-color:transparent">
+<div class="log w27">
+	{if $_username}{L('hellow')} {get_nickname()}, 
+	<a href="{APP_PATH}index.php?m=member&siteid={$siteid}" target="_blank"><!--{L('member_center')}--></a>
+	<a href="{APP_PATH}index.php?m=member&c=index&a=logout&forward={urlencode($_GET['forward'])}&siteid={$siteid}" target="_top">{L('logout')}Logout</a>&nbsp;&nbsp;
+	<a href="{APP_PATH}index.php?m=member&c=content&a=upload_video" target="_top" class="upv_btn"><!--上传视频--></a>
+	{else} 
+	
+<span class="r">
+	<a href="{APP_PATH}index.php?m=member&c=index&a=register&siteid={$siteid}" target="_top" style="padding-left:130px;">Register</a> 
+	<span>|</span> 
+	<a href="{APP_PATH}index.php?m=member&c=index&a=login&forward={urlencode($_GET['forward'])}&siteid={$siteid}" target="_top">Login</a>&nbsp;&nbsp;
+	<a href="{APP_PATH}index.php?m=member&c=content&a=upload_video" target="_top" class="upv_btn"><!--上传视频--></a>
+</span>
+{/if}
+</div>
+</body>

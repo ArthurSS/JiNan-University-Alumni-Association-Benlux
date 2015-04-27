@@ -1,0 +1,84 @@
+{template "content","header"}
+<div id="content" class="header" style="min-height:360px;">
+    {if !$_userid}
+    <div style="margin-top:50px;width:50%;margin-left:auto;margin-right:auto;text-align:center;font-size:18px;">
+        你需要登录才能获得其他校友的信息!-You need to login to acquire other's information!
+    </div>
+    {/if}
+
+    {if $_userid}
+    <div class="title"><p class="chineses">校友会会员信息</p><p class="englishs">Member's information</p></div>
+
+<?php
+$con = mysql_connect("yours","yours","yours");
+mysql_select_db("yours");
+
+if (!$con)
+{
+    die('Could not connect: ' . mysql_error());
+}
+
+$data=mysql_query("SELECT * FROM aab_member",$con);
+$data_detail=mysql_query("SELECT * FROM aab_member_detail",$con);
+?>
+
+<div class="info_table">
+    <table>
+        <thead>
+            <tr>
+                <th>userid</th>
+                <th>username</th>
+                <th>nickname</th>
+                <th>email</th>
+                <th>Graduation date</th>
+            </tr>
+        </thead>
+        <tbody>
+<?php
+while ($row=mysql_fetch_array($data)) {
+$row_detail=mysql_fetch_array($data_detail);
+?>
+                <tr>
+                    <td><?php echo $row['userid']; ?></td>
+                    <td><?php echo $row['username']; ?></td>
+                    <td><?php echo $row['nickname']; ?></td>
+                    <td><?php echo $row['email']; ?></td>
+                    <td><?php echo $row_detail['birthday']; ?></td>
+                </tr>
+
+<?php 
+}
+mysql_close($con);
+?>         
+
+        </tbody>
+    </table>
+</div>
+    <style type="text/css">
+    #content {
+        min-height: 300px;
+    }
+    .title p {
+        text-align: center;
+        font-size: 20px;
+        padding: 20px 10% 20px 0%;
+
+    }
+    th,td {
+        min-width: 100px;
+        width: auto;
+        padding-left: 5px;
+        padding-right: 5px;
+        padding: 5px;
+    }
+    .info_table {
+        width: auto;
+        margin-right: auto;
+        margin-left: 16%;
+        margin-bottom: 50px;
+    }
+    </style>
+
+{/if}
+</div>
+{template "content","footer"}
