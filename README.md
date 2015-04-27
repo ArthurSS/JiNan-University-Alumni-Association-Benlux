@@ -1,4 +1,4 @@
-#The offcial website for JiNan-University-Alumni-Association-Benlux
+##The offcial website for JiNan-University-Alumni-Association-Benlux
 
 暨大荷比卢校友会官网
 =======================================
@@ -7,12 +7,12 @@
 
 ###使用组件
 
-+phpcms
++ phpcms
 
-+bootstrap
++ bootstrap
 
-+jquery
++ jquery
 
 网站一直在持续更新维护中
 
-+链接：www.jnuren.com/jnuaab
++ 链接：www.jnuren.com/jnuaab
