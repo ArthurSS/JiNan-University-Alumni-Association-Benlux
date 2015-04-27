@@ -15,4 +15,4 @@
 
 网站一直在持续更新维护中
 
-+ 链接：www.jnuren.com/jnuaab
++ 链接：[暨大荷比卢校友会](http://www.jnuren.com/jnuaab)
